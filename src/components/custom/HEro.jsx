@@ -10,7 +10,7 @@ const HEro = () => {
           Discover Your Next Adventure with AI
         </span>
         <br />
-        <span className="text-[20px]">
+        <span className="md:text-[46px] text-[20px]">
           "Plan, Explore, and Adventure Your Way—Effortlessly with AI!"
         </span>
       </h1>
