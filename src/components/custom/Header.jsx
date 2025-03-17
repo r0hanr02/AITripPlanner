@@ -20,7 +20,7 @@ import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [openDialog, setopenDialog] = useState(false);
 
@@ -46,7 +46,7 @@ const Header = () => {
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         setopenDialog(false);
-        window.location.reload();
+        navigate("/");
       });
   };
 
@@ -81,7 +81,7 @@ const Header = () => {
                   onClick={() => {
                     googleLogout();
                     localStorage.clear();
-                    window.location.reload();
+                    navigate("/");
                   }}
                   className="cursor-pointer"
                 >
@@ -94,7 +94,7 @@ const Header = () => {
           <Button onClick={() => setopenDialog(true)}>Sign In </Button>
         )}
       </div>
-      <Dialog open={openDialog} >
+      <Dialog open={openDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
