@@ -56,16 +56,16 @@ const Header = () => {
       <div>
         {user ? (
           <div className="flex items-center gap-3">
-            <a href="/create-trip">
+            <Link to="/create-trip">
               <Button variant="outline" className="rounded-full">
                 + Create Trips
               </Button>
-            </a>
-            <a href="/mytrips">
+            </Link>
+            <Link to="/mytrips">
               <Button variant="outline" className="rounded-full">
                 My Trips
               </Button>
-            </a>
+            </Link>
 
             <Popover>
               <PopoverTrigger>
@@ -93,7 +93,7 @@ const Header = () => {
           <Button onClick={() => setopenDialog(true)}>Sign In </Button>
         )}
       </div>
-      <Dialog open={openDialog}>
+      <Dialog open={openDialog} >
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
