@@ -5,8 +5,7 @@ const Home = () => {
   return (
     <div> 
         <HEro />
-        
-        </div>
+    </div>
   )
 }
 

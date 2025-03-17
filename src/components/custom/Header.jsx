@@ -81,7 +81,6 @@ const Header = () => {
                   onClick={() => {
                     googleLogout();
                     localStorage.clear();
-                    navigate("/")
                     window.location.reload();
                   }}
                   className="cursor-pointer"

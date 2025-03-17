@@ -6,8 +6,6 @@ import CreateTrip from "./pages/CreateTrip";
 import ViewTrip from "./pages/ViewTrip";
 import MyTrips from "./pages/MyTrips";
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="">
      <Routes>
