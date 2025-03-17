@@ -24,9 +24,9 @@ const Header = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [openDialog, setopenDialog] = useState(false);
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
 
   const googleLogin = useGoogleLogin({
     onSuccess: (res) => GetUserProfile(res),
@@ -94,7 +94,7 @@ const Header = () => {
           <Button onClick={() => setopenDialog(true)}>Sign In </Button>
         )}
       </div>
-      <Dialog open={openDialog}>
+      <Dialog open={openDialog} onOpenChange={setopenDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogDescription>
