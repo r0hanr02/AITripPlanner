@@ -8,39 +8,49 @@ const MyTrips = () => {
   const navigate = useNavigate();
   const [userTrips, setUserTrips] = useState([]);
 
-  //   used to get all User Trips
+  // Fetch all user trips
   const GetUserTrips = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       navigate("/");
       return;
     }
-    const q = query(
-      collection(db, "AITrips"),
-      where("userEmail", "==", user.email)
-    );
-    const querySnapshot = await getDocs(q);
-    const trips = [];
 
-    querySnapshot.forEach((doc) => {
-      // setUserTrips((prev) => [...prev, doc.data()]);
-      trips.push(doc.data());
+    try {
+      const q = query(
+        collection(db, "AITrips"),
+        where("userEmail", "==", user.email)
+      );
+      const querySnapshot = await getDocs(q);
+      const trips = [];
+
+      querySnapshot.forEach((doc) => {
+        trips.push(doc.data());
+      });
+
       setUserTrips(trips);
-    });
+    } catch (error) {
+      console.error("Error fetching trips:", error.message);
+    }
   };
 
   useEffect(() => {
     GetUserTrips();
   }, []);
+
   return (
     <div className="flex justify-center">
-      <div className="w-10/12 sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">
+      <div className="w-10/12 sm:px-10 md:px-32 lg:px-56 xl:px-10 p-2 mt-10">
         <h2 className="font-bold text-3xl">My Trips</h2>
-        <div className="grid grid-cols-2 gap-5">
-          {userTrips.map((trip, index) => (
-            <UserTripsCard key={index} trip={trip} />
-          ))}
-        </div>
+        {userTrips.length > 0 ? (
+          <div className="grid md:grid-cols-3 gap-5">
+            {userTrips.map((trip, index) => (
+              <UserTripsCard key={index} trip={trip} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-500">You have no trips yet.</p>
+        )}
       </div>
     </div>
   );

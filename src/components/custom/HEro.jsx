@@ -4,17 +4,20 @@ import { Link } from "react-router-dom";
 
 const HEro = () => {
   return (
-    <div className="flex flex-col items-center mx-56 my-20 gap-10">
-      <h1 className="font-extrabold text-[50px] text-center mt-16">
+    <div className="flex flex-col items-center justify-center md:mx-56 md:my-20 gap-10">
+      <h1 className="font-extrabold md:text-[50px] text-[26px] text-center mt-16">
         <span className="text-[#f56551]">
           Discover Your Next Adventure with AI
         </span>
         <br />
-        Personalized Itineraries at Your Fingertips
+        <span className="text-[20px]">
+          "Plan, Explore, and Adventure Your Way—Effortlessly with AI!"
+        </span>
       </h1>
-      <p className="text-xl text-gray-500 text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas nemo
-        mollitia praesentium, neque enim nam dolore? Ab magnam dolor vero?
+      <p className="md:text-xl text-gray-500 text-center text-[18px] ">
+        "Discover the world your way with our AI-powered trip planner. From
+        hidden gems to iconic landmarks, get personalized itineraries that make
+        every journey unforgettable."
       </p>
       <Link to="/create-trip" className="">
         <Button>Get Started, its,free</Button>

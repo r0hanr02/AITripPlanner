@@ -3,9 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const UserTripsCard = ({ trip }) => {
-  const [PhotoUrl, setPhotoUrl] = useState();
+  const [photoUrl, setPhotoUrl] = useState(
+    "https://via.placeholder.com/450x200?text=No+Image+Available"
+  );
+
   useEffect(() => {
-    trip && GetPlacePhotos();
+    if (trip) {
+      GetPlacePhotos();
+    }
   }, [trip]);
 
   const GetPlacePhotos = async () => {
@@ -14,11 +19,10 @@ const UserTripsCard = ({ trip }) => {
     const data = { textQuery: trip?.tripData?.destination };
 
     try {
-      // Fetch hotel details from API
       const resp = await GetPlaceDetails(data);
 
       // Validate API response
-      if (!resp.data.places || resp.data.places.length === 0) {
+      if (!resp?.data?.places || resp.data.places.length === 0) {
         console.error("No places found for:", data.textQuery);
         return;
       }
@@ -41,18 +45,19 @@ const UserTripsCard = ({ trip }) => {
       console.error("Error fetching place details:", error.message);
     }
   };
+
   return (
-    <Link to={"/view-trip/" + trip?.id}>
+    <Link to={`/view-trip/${trip?.id}`}>
       <div className="flex flex-col items-start flex-wrap mt-5">
         <img
-          src={PhotoUrl}
-          alt=""
-          className="object-cover  h-[200px] w-[450px] rounded-xl"
+          src={photoUrl}
+          alt={trip?.tripData?.destination || "Trip Destination"}
+          className="object-cover h-[200px] w-[300px] md:h-[200px] md:w-[450px] rounded-xl"
         />
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start mt-2">
           <h2 className="font-bold text-lg">{trip?.tripData?.destination}</h2>
           <h2 className="text-gray-400 font-semibold">
-            {trip.userSelection.noOfDays} Days trips with{" "}
+            {trip.userSelection.noOfDays} Days trip with{" "}
             {trip.userSelection.budget}
           </h2>
         </div>

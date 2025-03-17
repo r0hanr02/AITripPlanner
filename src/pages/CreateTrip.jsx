@@ -116,11 +116,10 @@ const CreateTrip = () => {
           🌴 Tell us your travel preference 🥥
         </h2>
         <p className="mt-3 text-gray-500 text-xl">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-          quae!
+          Let AI craft your dream getaway—personalized just for you!
         </p>
 
-        <div className="mt-20 flex flex-col gap-10">
+        <div className="mt-10 flex flex-col gap-10">
           <div>
             <h2 className="text-xl my-3 font-medium">
               what is destination of choice ?
@@ -150,12 +149,12 @@ const CreateTrip = () => {
 
         <div className="mt-10">
           <h2 className="text-xl my-3 font-medium">What is your Budget?</h2>
-          <div className="grid grid-cols-3 gap-5 mt-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5">
             {selectBudgetOption.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleInputChange("budget", item.title)}
-                className={`p-4 cursor-pointer flex flex-col items-center  text-justify border roundelg hover:shadow-lg
+                className={`cursor-pointer flex flex-col items-center  text-justify border roundelg hover:shadow-lg
                   ${
                     formData?.budget == item.title &&
                     "shadow-lg border-2 border-black"
@@ -164,7 +163,7 @@ const CreateTrip = () => {
               >
                 <h2>{item.icon}</h2>
                 <h2 className="font-medium">{item.title}</h2>
-                <h2 className="text-gray-500 text-sm">{item.desc}</h2>
+                <h2 className="p-2 text-gray-500 text-sm">{item.desc}</h2>
               </div>
             ))}
           </div>
@@ -174,7 +173,7 @@ const CreateTrip = () => {
           <h2 className="text-xl my-3 font-medium">
             Who do you plan on Travelling with on your next Adventure?
           </h2>
-          <div className="grid grid-cols-3 gap-5 mt-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5">
             {selectTravelList.map((item, index) => (
               <div
                 key={index}

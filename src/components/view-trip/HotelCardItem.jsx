@@ -4,9 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const HotelCardItem = ({ hotel }) => {
-  const [PhotoUrl, setPhotoUrl] = useState();
+  const [photoUrl, setPhotoUrl] = useState("");
+
   useEffect(() => {
-    hotel && GetPlacePhotos();
+    if (hotel) {
+      setPhotoUrl(""); // Clear previous photo when hotel changes
+      GetPlacePhotos();
+    }
   }, [hotel]);
 
   const GetPlacePhotos = async () => {
@@ -19,14 +23,14 @@ const HotelCardItem = ({ hotel }) => {
       const resp = await GetPlaceDetails(data);
 
       // Validate API response
-      if (!resp.data.places || resp.data.places.length === 0) {
+      if (!resp?.data?.places || resp.data.places.length === 0) {
         console.error("No places found for:", data.textQuery);
         return;
       }
 
       const place = resp.data.places[0];
 
-      if (!place.photos || place.photos.length === 0) {
+      if (!place?.photos || place.photos.length === 0) {
         console.error("No photos available for this place.");
         return;
       }
@@ -35,9 +39,20 @@ const HotelCardItem = ({ hotel }) => {
       const photoIndex = place.photos[2] ? 2 : 0;
       const photoRef = place.photos[photoIndex]?.name;
 
+      if (!photoRef) {
+        console.error("Photo reference not found.");
+        return;
+      }
+
       // Get the correct URL
       const photoUrl = getPhotoUrl(photoRef);
-      setPhotoUrl(photoUrl);
+      console.log("Generated Photo URL:", photoUrl); // Log the URL for debugging
+
+      if (photoUrl) {
+        setPhotoUrl(photoUrl);
+      } else {
+        console.error("Failed to generate photo URL.");
+      }
     } catch (error) {
       console.error("Error fetching place details:", error.message);
     }
@@ -48,23 +63,23 @@ const HotelCardItem = ({ hotel }) => {
       <Link
         to={
           `https://www.google.com/maps/search/?api=1&query=` +
-          hotel.hotelName +
+          encodeURIComponent(hotel.hotelName) +
           "," +
-          hotel.address
+          encodeURIComponent(hotel.address)
         }
         target="__blank"
       >
         <div className="hover:scale-105 transition-all cursor-pointer">
           <img
-            src={PhotoUrl}
-            alt=""
-            className="rounded-lg h-72 w-full object-cover"
+            src={photoUrl || "https://via.placeholder.com/350"}
+            alt={hotel.hotelName}
+            className="rounded-lg h-28 md:h-72  w-full object-cover"
           />
           <div className="my-2 flex flex-col gap-1">
             <h2 className="font-medium">{hotel.hotelName}</h2>
             <h2 className="text-xs text-gray-500">📍 {hotel.address}</h2>
-            <h2 className="text-sm ">💰 {hotel.price}</h2>
-            <h2 className="text-sm ">⭐ {hotel.rating}</h2>
+            <h2 className="text-sm">💰 {hotel.price}</h2>
+            <h2 className="text-sm">⭐ {hotel.rating}</h2>
           </div>
         </div>
       </Link>

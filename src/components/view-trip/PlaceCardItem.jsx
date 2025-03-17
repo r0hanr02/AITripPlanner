@@ -49,7 +49,6 @@ const PlaceCardItem = ({ place }) => {
       }`;
       // console.log(":::::::::cd",photoUrl);
       setPhotoUrl(photoUrl);
-
     } catch (error) {
       console.error(
         "Error fetching place details:",
@@ -63,7 +62,7 @@ const PlaceCardItem = ({ place }) => {
       to={`https://www.google.com/maps/search/?api=1&query=` + place.placeName}
       target="__blank"
     >
-      <div className="shadow-md border rounded-xl p-3 mt-2 flex items-center gap-10">
+      <div className="shadow-md border rounded-xl p-3 mt-2 flex flex-col md:flex-row items-center gap-10">
         {photoUrl ? (
           <img
             src={photoUrl}
