@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
   Popover,
   PopoverContent,
@@ -20,6 +20,7 @@ import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 
 const Header = () => {
+  const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem("user"));
   const [openDialog, setopenDialog] = useState(false);
 
@@ -80,6 +81,7 @@ const Header = () => {
                   onClick={() => {
                     googleLogout();
                     localStorage.clear();
+                    navigate("/")
                     window.location.reload();
                   }}
                   className="cursor-pointer"
