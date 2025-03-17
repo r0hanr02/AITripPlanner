@@ -52,8 +52,8 @@ const Header = () => {
 
   return (
     <div className="p-3 shadow-sm flex justify-between items-center px-5">
-      <Link to="/">
-        <img src="/logo.svg" alt="" />
+      <Link to="/" className="">
+        <img src="/logo.svg" alt="" className="cursor-pointer" />
       </Link>
 
       <div>
