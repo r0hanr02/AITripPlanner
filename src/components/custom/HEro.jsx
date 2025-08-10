@@ -14,7 +14,7 @@ function HEro() {
             Get Started, It's Free
         </Button>
       </Link>
-      <img src="/landing.jpg" alt="" className='-mt-0 h-[500px] object-cover rounded-xl' />
+      <img src="/Travelling.jpeg" alt="" className='-mt-0 h-[500px] object-cover rounded-xl' />
 
       <Footer />
     </div>

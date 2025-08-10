@@ -10,9 +10,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  DialogHeader
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
@@ -116,7 +114,7 @@ function CreateTrip() {
 
 
   return (
-    <div className="sm:px-10 md:px-32 lg:px-56 xl:px-20 px-5 mt-10">
+    <div className="w-9/12 mx-auto sm:px-10 md:px-32 lg:px-56 xl:px-20 px-5 mt-10">
       <h2 className="font-bold text-3xl">
         Tell us your travel preferences 🏕️🌴
       </h2>
